@@ -6,6 +6,13 @@
       "time": "6:00 to 9:00pm",
       "location": "River Island Art Park",
       "description": "This starter event proves the page renders. Open /admin/, add a new event from your phone, publish, and watch it appear here after about two minutes."
+    },
+    {
+      "title": "Distribution Proof DP-20260614-1621",
+      "date": "June 14, 2026",
+      "time": "4:21pm",
+      "location": "Cowork 4 test,",
+      "description": "Distribution proof: editor to GitHub to Cloudflare to second device."
     }
   ]
 }
