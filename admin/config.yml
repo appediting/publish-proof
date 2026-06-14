@@ -1,0 +1,42 @@
+# =============================================================================
+# BACKEND BLOCK -- DO NOT GUESS THESE VALUES.
+# DecapBridge generates the exact backend block for your site. After you create
+# the site in the DecapBridge dashboard, it shows a config.yml to copy. Paste
+# that generated backend block in place of the one below (it will include your
+# site's own gateway/auth URLs and your repo). This path replaces the old,
+# deprecated Netlify Git Gateway.
+# =============================================================================
+backend:
+  name: git-gateway
+  # >>> REPLACE this whole backend block with the one DecapBridge generates <<<
+  # It will look similar but carry YOUR site's real URLs and repo/branch.
+  branch: main
+
+# Decap requires a media folder even if you upload no images in this proof.
+media_folder: "uploads"
+public_folder: "/uploads"
+
+# Optional but nice: lets the editor's preview/"View live" link work.
+# site_url: "https://YOUR-SITE.netlify.app"
+
+collections:
+  - name: "site"
+    label: "Site content"
+    files:
+      - name: "events"
+        label: "Events list"
+        file: "data/events.json"
+        format: "json"
+        description: "Add, edit, or remove events, then click Publish to push them live."
+        fields:
+          - name: "events"
+            label: "Events"
+            label_singular: "Event"
+            widget: "list"
+            summary: "{{fields.title}} - {{fields.date}}"
+            fields:
+              - {name: "title", label: "Title", widget: "string"}
+              - {name: "date", label: "Date", widget: "string", hint: "e.g. July 3, 2026"}
+              - {name: "time", label: "Time", widget: "string", required: false, hint: "e.g. 6:00 to 9:00pm"}
+              - {name: "location", label: "Location", widget: "string", required: false}
+              - {name: "description", label: "Description", widget: "text", required: false}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Publish Proof (throwaway)</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:560px;margin:0 auto;padding:24px 18px 60px;color:#26282B;background:#F6F6F4}
+  h1{font-size:22px;color:#2C4A6E}
+  .sub{color:#6B6E73;font-size:14px;margin-bottom:18px}
+  .event{background:#fff;border:1px solid #E4E4E0;border-radius:14px;padding:14px 16px;margin-bottom:10px}
+  .event h2{font-size:16px;color:#2C4A6E;margin:0 0 4px}
+  .event .meta{font-size:13px;color:#6B6E73}
+  .event p{font-size:14px;margin:8px 0 0;line-height:1.45}
+  .stamp{font-size:12px;color:#6B6E73;margin-top:20px;text-align:center}
+  .note{background:#E9EEF4;border-radius:10px;padding:10px 12px;font-size:12.5px;color:#2C4A6E;margin-bottom:18px}
+</style>
+</head>
+<body>
+  <h1>Publish Proof</h1>
+  <p class="sub">Throwaway test site. Proves the one promise: a non-technical editor publishes an event from a phone and it appears here in about two minutes, with no developer in the loop.</p>
+  <div class="note">This is NOT the Woonsocket app. It exists only to prove the editor-to-live pipeline on the DecapBridge auth path.</div>
+  <div id="events">Loading events...</div>
+  <p class="stamp" id="stamp"></p>
+<script>
+fetch("./data/events.json?cachebust=" + Date.now())
+  .then(r => r.json())
+  .then(d => {
+    const list = (d && d.events) || [];
+    const el = document.getElementById("events");
+    if (!list.length) { el.innerHTML = "<p>No events yet. Add one in the editor at <code>/admin/</code>.</p>"; return; }
+    el.innerHTML = list.map(e => `
+      <div class="event">
+        <h2>${e.title || "Untitled"}</h2>
+        <div class="meta">${[e.date, e.time, e.location].filter(Boolean).join(" &middot; ")}</div>
+        ${e.description ? `<p>${e.description}</p>` : ""}
+      </div>`).join("");
+    document.getElementById("stamp").textContent = "Showing " + list.length + " event" + (list.length===1?"":"s") + ". Reload after publishing to see changes.";
+  })
+  .catch(() => { document.getElementById("events").innerHTML = "<p>Could not load data/events.json yet.</p>"; });
+</script>
+</body>
+</html>

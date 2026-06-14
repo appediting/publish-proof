@@ -1,0 +1,11 @@
+{
+  "events": [
+    {
+      "title": "Sample Event (delete me)",
+      "date": "July 3, 2026",
+      "time": "6:00 to 9:00pm",
+      "location": "River Island Art Park",
+      "description": "This starter event proves the page renders. Open /admin/, add a new event from your phone, publish, and watch it appear here after about two minutes."
+    }
+  ]
+}
