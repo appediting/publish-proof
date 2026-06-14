@@ -1,23 +1,26 @@
-# =============================================================================
-# BACKEND BLOCK -- DO NOT GUESS THESE VALUES.
-# DecapBridge generates the exact backend block for your site. After you create
-# the site in the DecapBridge dashboard, it shows a config.yml to copy. Paste
-# that generated backend block in place of the one below (it will include your
-# site's own gateway/auth URLs and your repo). This path replaces the old,
-# deprecated Netlify Git Gateway.
-# =============================================================================
+# Use DecapBridge classic auth (required)
 backend:
   name: git-gateway
-  # >>> REPLACE this whole backend block with the one DecapBridge generates <<<
-  # It will look similar but carry YOUR site's real URLs and repo/branch.
+  repo: appediting/publish-proof
   branch: main
+  identity_url: https://auth.decapbridge.com/sites/7642717e-b840-4ae4-92ba-2e40f3fa8788
+  gateway_url: https://gateway.decapbridge.com
+  # See who did what (optional)
+  commit_messages:
+    create: Create {{collection}} “{{slug}}” - {{author-name}} <{{author-login}}> via DecapBridge
+    update: Update {{collection}} “{{slug}}” - {{author-name}} <{{author-login}}> via DecapBridge
+    delete: Delete {{collection}} “{{slug}}” - {{author-name}} <{{author-login}}> via DecapBridge
+    uploadMedia: Upload “{{path}}” - {{author-name}} <{{author-login}}> via DecapBridge
+    deleteMedia: Delete “{{path}}” - {{author-name}} <{{author-login}}> via DecapBridge
+    openAuthoring: Message {{message}} - {{author-name}} <{{author-login}}> via DecapBridge
+# Better Decap + Bridge logo (optional)
+logo_url: https://decapbridge.com/decapcms-with-bridge.svg
+# Add site links in Decap CMS (optional)
+site_url: https://publish-proof.pages.dev
 
-# Decap requires a media folder even if you upload no images in this proof.
+# Decap requires a media folder even if no images are uploaded
 media_folder: "uploads"
 public_folder: "/uploads"
-
-# Optional but nice: lets the editor's preview/"View live" link work.
-# site_url: "https://YOUR-SITE.netlify.app"
 
 collections:
   - name: "site"
